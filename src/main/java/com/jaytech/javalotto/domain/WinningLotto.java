@@ -10,7 +10,10 @@ public class WinningLotto {
     }
 
     public Rank match(Lotto userLotto) {
-        // TODO 로직 구현
-        return null;
+        // 객체에 메세지를 보낸다
+        int countOfMath = userLotto.countOfMatch(lotto);
+        boolean isBonusMatch = userLotto.isContains(bonusNo);
+
+        return Rank.valueOf(countOfMath, isBonusMatch);
     }
 }

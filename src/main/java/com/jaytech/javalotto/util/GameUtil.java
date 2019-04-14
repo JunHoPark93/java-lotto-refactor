@@ -1,6 +1,8 @@
 package com.jaytech.javalotto.util;
 
 import com.jaytech.javalotto.domain.Lotto;
+import com.jaytech.javalotto.domain.LottoResult;
+import com.jaytech.javalotto.domain.Money;
 import com.jaytech.javalotto.exception.LottoException;
 
 import java.util.Arrays;
@@ -26,5 +28,12 @@ public class GameUtil {
 
     public static void printLottoList(List<Lotto> purchasedLottoList) {
         purchasedLottoList.stream().map(Lotto::getNumbers).forEach(System.out::println);
+    }
+
+    public static void printResult(LottoResult lottoResult, Money money) {
+        System.out.println("당첨 통계");
+        System.out.println("---------");
+        lottoResult.printHittingStatus();
+        lottoResult.printProfitRatio(money);
     }
 }

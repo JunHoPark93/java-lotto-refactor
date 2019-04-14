@@ -48,7 +48,15 @@ public enum Rank {
         throw new IllegalArgumentException(countOfMatch + "는 유효하지 않은 값입니다");
     }
 
-    private boolean matchCount(int countOfMath) {
-        return this.countOfMatch == countOfMatch;
+    public long prize(int countOfMatchLotto) {
+        return countOfMatchLotto * winningMoney;
+    }
+
+    public void printResult(int totalCount) {
+        System.out.println(countOfMatch + "개 일치 " + "(" + winningMoney + "원)-" + totalCount + "개");
+    }
+
+    private boolean matchCount(int count) {
+        return this.countOfMatch == count;
     }
 }

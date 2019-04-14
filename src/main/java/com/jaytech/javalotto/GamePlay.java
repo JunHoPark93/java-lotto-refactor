@@ -1,9 +1,6 @@
 package com.jaytech.javalotto;
 
-import com.jaytech.javalotto.domain.Lotto;
-import com.jaytech.javalotto.domain.LottoNumber;
-import com.jaytech.javalotto.domain.Money;
-import com.jaytech.javalotto.domain.WinningLotto;
+import com.jaytech.javalotto.domain.*;
 import com.jaytech.javalotto.exception.LottoException;
 import com.jaytech.javalotto.util.GameUtil;
 import com.jaytech.javalotto.util.LottoGenerator;
@@ -20,6 +17,7 @@ public class GamePlay {
     private Lotto lastWeekWinningLotto;
     private WinningLotto winningLotto;
     private LottoNumber bonusNumber;
+    private LottoResult lottoResult;
 
     public void play() {
         getMoneyFromUser();
@@ -28,6 +26,15 @@ public class GamePlay {
         getWinningLottoNumberFromUser();
         getBonusNumberFromUser();
         makeWinningLotto();
+        calculateResult();
+        GameUtil.printResult(lottoResult, money);
+    }
+
+    private void calculateResult() {
+        lottoResult = new LottoResult();
+        purchasedLottoList.stream()
+                .map(lotto -> winningLotto.match(lotto))
+                .forEach(lottoResult::putResult);
     }
 
     private void getMoneyFromUser() {
